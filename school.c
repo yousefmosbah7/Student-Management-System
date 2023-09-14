@@ -88,7 +88,12 @@ void find_first(struct Student* students,uint8 arr[]){
 }
 void delete_std(struct Student* students,sint32 count){
     for(sint32 i=count;i<std_count;i++){
-        students[i-1]=students[i];
+        students[i-1].age=students[i].age;
+        students[i-1].gender=students[i].gender;
+        students[i-1].arr_str[0]=students[i].arr_str[0];
+        students[i-1].arr_str[1]=students[i].arr_str[1];
+        students[i-1].first_name[30]=students[i].first_name[30];
+        students[i-1].last_name[30]=students[i].last_name[30];
     }
     std_count--;
 }
@@ -199,6 +204,7 @@ if(option==1){
     sint32 num;
     printf("\nEnter student roll number you want to delete: ");
     scanf("%d",&num);
+    printf("\n");
     delete_std(students,num);
     }
 }else if(option==7){
