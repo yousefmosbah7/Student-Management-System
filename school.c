@@ -9,18 +9,54 @@ struct Student {
     uint8 gender;
 };
 sint32 std_count=0;
+sint32 Isalpha(const uint8 *arr){
+    sint32 flag;
+for(sint32 i=0 ; arr[i] ; i++){
+    if(!isalpha(arr[i])||arr[i]==' '){
+        flag= 0;
+        break;//not string
+    }else{
+    flag=1;
+    }
+}
+return flag;
+}
 void add_std(struct Student* students) {
         printf("Enter information for student number (%d):\n", std_count+1);
+        do{
         printf("\nFirst name: ");
         scanf("%s",students[std_count].first_name);
+        if(!Isalpha(students[std_count].first_name)){
+        printf("\n\"First name must be string\"\n");
+        }
+        }
+        while(Isalpha(students[std_count].first_name)!=1);
+        do{
         printf("\nLast name: ");
-        scanf(" %s",students[std_count].last_name);
+        scanf("%s",students[std_count].last_name);
+        if(!Isalpha(students[std_count].last_name)){
+        printf("\n\"Last name must be string\"\n");
+        }
+        }
+        while(Isalpha(students[std_count].last_name)!=1);
         students[std_count].roll_num=std_count+1;
         printf("\nEnter only 2 of these courses (English,Geography,Art,Design,Science,History,Maths) to be registered in\n\n");
+        do{
         printf("Enter course number one: ");
         scanf("%s",&students[std_count].arr_str[0]);
+        if(!Isalpha(&students[std_count].arr_str[0])){
+        printf("\n\"Course must be string\"\n\n");
+        }
+        }
+        while(Isalpha(&students[std_count].arr_str[0])!=1);
+        do{
         printf("\nEnter course number two: ");
         scanf("%s",&students[std_count].arr_str[1]);
+        if(!Isalpha(&students[std_count].arr_str[1])){
+        printf("\n\"Course must be string\"\n\n");
+        }
+        }
+        while(Isalpha(&students[std_count].arr_str[1])!=1);
         printf("\nAge: ");
         while (scanf("%d",&(students[std_count].age)) != 1) {
         while (getchar() != '\n');
@@ -88,6 +124,7 @@ void find_first(struct Student* students,uint8 arr[]){
 }
 void delete_std(struct Student* students,sint32 count){
     for(sint32 i=count;i<std_count;i++){
+        students[i-1].age=students[i].age;
         students[i-1].gender=students[i].gender;
         students[i-1].arr_str[0]=students[i].arr_str[0];
         students[i-1].arr_str[1]=students[i].arr_str[1];
@@ -98,11 +135,23 @@ void delete_std(struct Student* students,sint32 count){
 }
 void update_std(struct Student* students,sint32 number,sint32 opt){
     if(opt==1){
-        printf("Enter new first name: ");
+        do{
+        printf("\nEnter new first name: ");
         scanf("%s",students[number-1].first_name);
+        if(!Isalpha(students[number-1].first_name)){
+        printf("\n\"First name must be string\"\n");
+        }
+        }
+        while(Isalpha(students[number-1].first_name)!=1);
     }else if(opt==2){
-        printf("Enter new last name: ");
+        do{
+        printf("\nEnter new last name: ");
         scanf("%s",students[number-1].last_name);
+        if(!Isalpha(students[number-1].last_name)){
+        printf("\n\"Last name must be string\"\n");
+        }
+        }
+        while(Isalpha(students[number-1].last_name)!=1);
     }else if(opt==3){
         printf("Enter your new roll number: ");
         scanf("%d",students[number-1].roll_num);
@@ -116,7 +165,7 @@ void update_std(struct Student* students,sint32 number,sint32 opt){
         printf("Enter your new age: ");
         scanf("%d",students[number-1].age);
     }else if(opt==6){
-        printf("Enter your new age: ");
+        printf("Enter your new gender: ");
         scanf("%c",&students[number-1].gender);
     }
 }
