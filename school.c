@@ -3,18 +3,18 @@
 struct Student {
     uint8 first_name[30];
     uint8 last_name[30];
-    uint16 roll_num;
+    sint32 roll_num;
     uint8 *arr_str[2];
-    uint16 age;
+    sint32 age;
     uint8 gender;
 };
-uint16 std_count=0;
+sint32 std_count=0;
 void add_std(struct Student* students) {
         printf("Enter information for student number (%d):\n", std_count+1);
         printf("\nFirst name: ");
         scanf("%s",students[std_count].first_name);
         printf("\nLast name: ");
-        scanf("%s",students[std_count].last_name);
+        scanf(" %s",students[std_count].last_name);
         students[std_count].roll_num=std_count+1;
         printf("\nEnter only 2 of these courses (English,Geography,Art,Design,Science,History,Maths) to be registered in\n\n");
         printf("Enter course number one: ");
@@ -32,8 +32,8 @@ void add_std(struct Student* students) {
         printf("\n");
         printf("*************************************************\n\n");
 }
-void print_stds(struct Student* students, uint16 count) {
-    for (uint16 i = 0; i < count; i++) {
+void print_stds(struct Student* students, sint32 count) {
+    for (sint32 i = 0; i < count; i++) {
         printf("\n-------------------------------------\n");
         printf("information for student number (%d):\n",i+1);
         printf("-------------------------------------\n\n");
@@ -47,7 +47,7 @@ void print_stds(struct Student* students, uint16 count) {
         printf("\n");
     }
 }
-void find_roll(struct Student* students,uint16 count){
+void find_roll(struct Student* students,sint32 count){
         //count received 0 for roll=1
         //count=0 for roll=1
         //std_count=1
@@ -67,8 +67,8 @@ void find_roll(struct Student* students,uint16 count){
         }
 }
 void find_first(struct Student* students,uint8 arr[]){
-    uint16 flag=0;
-    for(uint16 i=0;i<std_count;i++){
+    sint32 flag=0;
+    for(sint32 i=0;i<std_count;i++){
         if(!(strcmp(arr,students[i].first_name))){
         flag=1;
         printf("\n-------------------------------------\n\n");
@@ -86,13 +86,13 @@ void find_first(struct Student* students,uint8 arr[]){
         printf("\nThere isn't a student with this first name\n");
         printf("-----------------------------------------------\n\n");    }
 }
-void delete_std(struct Student* students,uint16 count){
-    for(uint16 i=count;i<std_count;i++){
+void delete_std(struct Student* students,sint32 count){
+    for(sint32 i=count;i<std_count;i++){
         students[i-1]=students[i];
     }
     std_count--;
 }
-void update_std(struct Student* students,uint16 number,uint16 opt){
+void update_std(struct Student* students,sint32 number,sint32 opt){
     if(opt==1){
         printf("Enter new first name: ");
         scanf("%s",students[number-1].first_name);
@@ -117,9 +117,9 @@ void update_std(struct Student* students,uint16 number,uint16 opt){
     }
 }
 void course_num(struct Student *students,uint8 *ptr){
-    uint16 x=1;
-    uint16 flag=0;
-    for(uint16 i=0;i<std_count;i++){
+    sint32 x=1;
+    sint32 flag=0;
+    for(sint32 i=0;i<std_count;i++){
         if((!(strcmp(ptr,&students[i].arr_str[0])))||(!(strcmp(ptr,&students[i].arr_str[1])))){
             flag=1;
             printf("\n[%d] - %s %s\n",x,students[i].first_name,students[i].last_name);
@@ -134,10 +134,10 @@ void course_num(struct Student *students,uint8 *ptr){
     }
 }
 int main() {
-uint16 std_num;
+sint32 std_num;
 struct Student students[100];
 printf("\n*********Welcome to GLORY school*********\n\n");
-uint16 option;
+sint32 option;
 do{
 printf("1 - Add student\n\n");
 printf("2 - List of student\n\n");
@@ -170,7 +170,7 @@ if(option==1){
         printf("There is no students yet\n");
         printf("-------------------------\n\n");
     }else{
-    uint16 num;
+    sint32 num;
     printf("\nEnter student roll number: ");
     scanf("%d",&num);
     find_roll(students,num-1);
@@ -196,7 +196,7 @@ if(option==1){
         printf("There is no students yet\n");
         printf("-------------------------\n\n");
     }else{
-    uint16 num;
+    sint32 num;
     printf("\nEnter student roll number you want to delete: ");
     scanf("%d",&num);
     delete_std(students,num);
@@ -208,7 +208,7 @@ if(option==1){
         printf("-------------------------\n\n");
     }else{
     printf("\nEnter roll number of student you want to update: ");
-    uint16 number;
+    sint32 number;
     while (scanf("%d", &number) != 1) {
     while (getchar() != '\n');
     printf("\nInvalid input. Please enter an integer: ");
@@ -219,7 +219,7 @@ if(option==1){
     printf("4 - Update courses\n\n");
     printf("5 - Update age\n\n");
     printf("6 - Update gender\n\n");
-    uint16 opt;
+    sint32 opt;
     printf("Choose between updating option: ");
     while (scanf("%d", &opt) != 1) {
     while (getchar() != '\n');
