@@ -88,7 +88,6 @@ void find_first(struct Student* students,uint8 arr[]){
 }
 void delete_std(struct Student* students,sint32 count){
     for(sint32 i=count;i<std_count;i++){
-        students[i-1].age=students[i].age;
         students[i-1].gender=students[i].gender;
         students[i-1].arr_str[0]=students[i].arr_str[0];
         students[i-1].arr_str[1]=students[i].arr_str[1];
