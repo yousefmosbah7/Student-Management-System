@@ -25,7 +25,7 @@ return flag;
 int main() {
 sint32 std_num;
 struct Student students[100];
-printf("\n*********Welcome to GLORY school*********\n\n");
+printf("\n*********Student Management System*********\n\n");
 sint32 option;
 do{
 printf("1 - Add student\n\n");
@@ -36,7 +36,8 @@ printf("5 - Find student numbers\n\n");
 printf("6 - Delete student\n\n");
 printf("7 - Update student\n\n");
 printf("8 - List of student registered in a course\n\n");
-printf("9 - Quite\n\n");
+printf("9 - Calculate student GPA\n\n");
+printf("10 - Quite\n\n");
 printf("Choose between options: ");
 while (scanf("%d", &option) != 1) {
 while (getchar() != '\n');
@@ -61,7 +62,10 @@ if(option==1){
     }else{
     sint32 num;
     printf("\nEnter student roll number: ");
-    scanf("%d",&num);
+    while (scanf("%d", &num) != 1) {
+    while (getchar() != '\n');
+    printf("\nInvalid input. Please enter an integer: ");
+    }
     find_roll(students,num-1);
     }
 }else if(option==4){
@@ -90,7 +94,9 @@ if(option==1){
     scanf("%d",&num);
     printf("\n");
     delete_std(students,num);
+    printf("-----------------------------------------\n");
     printf("Student with roll number %d is deleted\n\n",num);
+    printf("-----------------------------------------\n");
     }
 }else if(option==7){
     if(std_count==0){
@@ -141,8 +147,20 @@ if(option==1){
         scanf("%s",&arr);
         course_num(students,arr);
     }
+}else if(option==9){
+        f32 first;
+        f32 second;
+        printf("Enter your first course mark out of 100: ");
+        scanf("%f",&first);
+        printf("\n");
+        printf("Enter your second course mark out of 100: ");
+        scanf("%f",&second);
+        printf("\n");
+        f32 res =((first+second)/200)*4;
+        printf("Your GPA = %.2f\n",res);
+        printf("\n");
 }
 }
-while(option!=9);
+while(option!=10);
 printf("Thank you for visiting our site\n");
 }
