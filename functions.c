@@ -131,6 +131,7 @@ void update_std(struct Student* students,sint32 number,sint32 opt){
         }
         }
         while(Isalpha(students[number-1].first_name)!=1);
+        printf("\n");
     }else if(opt==2){
         do{
         printf("\nEnter new last name: ");
@@ -140,9 +141,11 @@ void update_std(struct Student* students,sint32 number,sint32 opt){
         }
         }
         while(Isalpha(students[number-1].last_name)!=1);
+        printf("\n");
     }else if(opt==3){
         printf("Enter your new roll number: ");
         scanf("%d",students[number-1].roll_num);
+        printf("\n");
     }else if(opt==4){
         printf("Enter your first new course: ");
         scanf("%s",&students[number-1].arr_str[0]);
@@ -152,8 +155,10 @@ void update_std(struct Student* students,sint32 number,sint32 opt){
         }else if(opt==5){
         printf("Enter your new age: ");
         scanf("%d",students[number-1].age);
+        printf("\n");
     }else if(opt==6){
         printf("Enter your new gender: ");
+        printf("\n");
         scanf("%c",&students[number-1].gender);
     }
 }
